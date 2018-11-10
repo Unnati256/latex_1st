@@ -1,17 +1,39 @@
-\documentclass[border=10pt]{article}
+\documentclass{article}
 \usepackage{verbatim}
 \usepackage{tikz}
-
+\usepackage{pgfplots}
+\usepgfplotslibrary{external}
+\tikzexternalize[prefix=extfig/]
 \begin{document}
 
+\begin{equation}
+    a = b
+    \label{equation}
+\end{equation}
+
+\begin{equation}
+    b = c + 1
+    \label{equation1}
+\end{equation}
+
+\begin{equation}
+    b = c + 2
+    \label{equation2}
+\end{equation}
+
+
+\begin{figure}[h]
+  \tikzexternaldisable
 \begin{tikzpicture}[nodes={draw, circle}, ->]
 %\tikzstyle{every node}=[draw, shape = circle];
 
-\node{q}
-  child { node{a} }
-  child { node{c} }
-  child { node{b} };
+\node{\ref{equation}}
+  child { node{\ref{equation1}} }
+  child { node{\ref{equation2}} };
 
 
 \end{tikzpicture}
+  \tikzexternaldisable
+\end{figure}
+
 \end{document}
